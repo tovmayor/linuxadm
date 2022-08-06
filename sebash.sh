@@ -12,7 +12,7 @@ fi
 #ses=()
 
 IFS=$'\n'
-for s in 
+for s in `sestatus`
 do
     echo "$s ---"
 done
