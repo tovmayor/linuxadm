@@ -9,7 +9,10 @@ fi
 
 #selinux status check
 
-for s in `sestatus`
+#ses=()
+
+IFS=$'\n'
+for s in 
 do
     echo "$s ---"
 done
