@@ -14,5 +14,18 @@ fi
 IFS=$'\n'
 for s in `sestatus`
 do
-    echo "$s ---"
+    if [ $s = "Current mode:                   enforcing" ]
+    then
+        echo "SELinux security policy is enforced"
+    elif [ $s = "Current mode:                   permissive" ]
+    then
+        echo "SELinux prints warnings instead of enforcing"
+    elif [ $s = "Current mode:                   disabled" ]
+    then
+        echo "No SELinux policy is loaded"
+    else 
+        echo "Some shit"
+    fi
+
+#    echo "$s ---"
 done
