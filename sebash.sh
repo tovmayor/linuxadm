@@ -10,7 +10,7 @@ fi
 #selinux status check
 
 IFS=$'\n'
-echo -e "SELinux working status: \n"
+echo -e "SELinux working status: "
 for s in `sestatus`
 do
     if [ $s = "Current mode:                   enforcing" ]
@@ -23,7 +23,6 @@ do
     then
         echo -e "\tNo SELinux policy is loaded"
 #    else 
-#        echo "Some shit happened"
     fi
 
 #    echo "$s ---"
@@ -31,18 +30,21 @@ done
 
 #enable SELinux
 
-read -p "Do you want to enable(e) or disable(d) SELinux?" enabl
+read -p "Do you want to enable(e) or disable(d) SELinux now?" enabl
 if [ $enabl == "e" ]
 then 
     setenforce 1
 elif [ $enabl == "d" ]
 then 
     setenforce 0
+else 
+    echo "Key not recognized, exiting \n"
+    exit 1
 fi
 
 
 #parsing /etc/selinux/confug
-echo -e "SELinux config file activation status: \n"
+echo -e "SELinux config file activation status: "
 
 for c in `cat /etc/selinux/config`
 do
@@ -56,7 +58,7 @@ do
     then
         echo -e "\tNo SELinux policy is loaded"
 #    else 
-#        echo "Some shit"
+#        echo "Some shit happened"
     fi
 
 done
@@ -66,8 +68,13 @@ done
 read -p "Do you want to enable(e) or disable(d) SELinux in config file?" conf
 if [ $conf == "e" ]
 then 
-    setenforce 1
+    sed -i -e 's/SELINUX=disabled/SELINUX=enforcing/g' /etc/selinux/config
+    echo -e "\tSELinux security policy is enforced in config file"
 elif [ $conf == "d" ]
 then 
-    setenforce 0
+    sed -i -e 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config
+    echo -e "\tSELinux security policy is disabled in config file"
+else 
+    echo "Key not recognized, exiting \n"
+    exit 1
 fi
