@@ -10,7 +10,7 @@ fi
 #selinux status check
 
 IFS=$'\n'
-echo -e "SELinux working status: "
+echo "SELinux working status: "
 for s in `sestatus`
 do
     if [ $s = "Current mode:                   enforcing" ]
