@@ -1,9 +1,10 @@
 #!/bin/bash
+
 #su permissions check
 
 if [ `id -u` != 0 ]
 then
-    echo "Please run as su"
+    echo "Please run as su to change SELinux settings"
     exit 1
 fi    
 
@@ -22,10 +23,9 @@ do
     elif [ $s = "Current mode:                   disabled" ]
     then
         echo -e "\tNo SELinux policy is loaded\n"
-#    else 
+
     fi
 
-#    echo "$s ---"
 done
 
 #enable SELinux
@@ -34,11 +34,11 @@ read -p "Do you want to enable(e) or disable(d) SELinux now?" enabl
 if [ $enabl == "e" ]
 then 
     setenforce 1
-    echo -e "Enabled\n"
+    echo -e "\tEnabled\n"
 elif [ $enabl == "d" ]
 then 
     setenforce 0
-    echo -e "Disbled\n"
+    echo -e "\tDisbled\n"
 else 
     echo "Key not recognized, exiting \n"
     exit 1
@@ -52,13 +52,13 @@ for c in `cat /etc/selinux/config`
 do
     if [ $c = "SELINUX=enforcing" ]
     then
-        echo -e "\tSELinux security policy is enforced"
+        echo -e "\tSELinux security policy is enforced\n"
     elif [ $c = "SELINUX=permissive" ]
     then
-        echo -e "\tSELinux prints warnings instead of enforcing"
+        echo -e "\tSELinux prints warnings instead of enforcing\n"
     elif [ $c = "SELINUX=disabled" ]
     then
-        echo -e "\tNo SELinux policy is loaded"
+        echo -e "\tNo SELinux policy is loaded\n"
 #    else 
 #        echo "Some shit happened"
     fi
