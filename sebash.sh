@@ -3,7 +3,7 @@
 
 if [ `id -u` != 0 ]
 then
-    echo "Please run  as su"
+    echo "Please run as su"
     exit 1
 fi    
 
@@ -15,13 +15,13 @@ for s in `sestatus`
 do
     if [ $s = "Current mode:                   enforcing" ]
     then
-        echo -e "\tSELinux security policy is enforced"
+        echo -e "\tSELinux security policy is enforced\n"
     elif [ $s = "Current mode:                   permissive" ]
     then
-        echo -e "\tSELinux prints warnings instead of enforcing"
+        echo -e "\tSELinux prints warnings instead of enforcing\n"
     elif [ $s = "Current mode:                   disabled" ]
     then
-        echo -e "\tNo SELinux policy is loaded"
+        echo -e "\tNo SELinux policy is loaded\n"
 #    else 
     fi
 
@@ -34,9 +34,11 @@ read -p "Do you want to enable(e) or disable(d) SELinux now?" enabl
 if [ $enabl == "e" ]
 then 
     setenforce 1
+    echo -e "Enabled\n"
 elif [ $enabl == "d" ]
 then 
     setenforce 0
+    echo -e "Disbled\n"
 else 
     echo "Key not recognized, exiting \n"
     exit 1
