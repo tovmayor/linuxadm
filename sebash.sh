@@ -42,6 +42,7 @@ then
     if [ $rn == "y" ]
     then 
         echo -e "reboot now\n"
+        exit 1
     fi
 elif [ "$enabl" == "e" ] && !$reboot
 then 
