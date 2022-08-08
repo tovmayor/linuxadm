@@ -70,7 +70,7 @@ do
         echo -e "\tSELinux security policy is enforced\n"
     elif [ $c = "SELINUX=permissive" ]
     then
-        echo -e "\tSELinux prints warnings instead of enforcing\n"
+        echo -e "\tSELinux prints warnings instead of enforcing (permissive)\n"
     elif [ $c = "SELINUX=disabled" ]
     then
         echo -e "\tNo SELinux policy is loaded\n"
