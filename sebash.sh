@@ -85,6 +85,7 @@ read -p "Do you want to enable(e) or disable(d) SELinux in config file?" conf
 if [ $conf == "e" ]
 then 
     sed -i -e 's/SELINUX=disabled/SELINUX=enforcing/g' /etc/selinux/config
+    sed -i -e 's/SELINUX=permissive/SELINUX=enforcing/g' /etc/selinux/config
     echo -e "\tSELinux security policy is enforced in config file"
 elif [ $conf == "d" ]
 then 
