@@ -20,7 +20,7 @@ do
     elif [ $s = "Current mode:                   permissive" ]
     then
         echo -e "\tSELinux prints warnings instead of enforcing\n"
-    elif [ $s = "Current mode:                   disabled" ]
+    elif [[ $s = "Current mode:                   disabled"] || [ $s = "SELinux status:                 disabled"]]
     then
         echo -e "\tNo SELinux policy is loaded\n"
 
