@@ -91,6 +91,7 @@ then
 elif [ $conf == "d" ]
 then 
     sed -i -e 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config
+    sed -i -e 's/SELINUX=permissive/SELINUX=disabled/g' /etc/selinux/config
     echo -e "\tSELinux security policy is disabled in config file"
 else 
     echo "Key not recognized, exiting \n"
