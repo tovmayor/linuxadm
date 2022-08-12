@@ -34,7 +34,7 @@ done
 echo -e $reboot_needed"\n"
 
 read -p "Do you want to enable(e) or disable(d) SELinux now? " enabl
-if [[ "$enabl" == "e" && $reboot_needed ]]
+if [ "$enabl" == "e" ] && $reboot_needed
 then 
     sed -i -e 's/SELINUX=disabled/SELINUX=enforcing/g' /etc/selinux/config
     echo -e "\tSELinux security policy is enforced in config file, reboot is needed."
@@ -44,15 +44,15 @@ then
         reboot now
 
     fi
-elif [[ "$enabl" == "e" && !$reboot_needed ]] 
+elif [ "$enabl" == "e" ] && !$reboot_needed 
 then 
     setenforce 1
     echo -e "\tEnabled\n"
 
-elif [[ $enabl == "d" && $reboot_needed ]]
+elif [ $enabl == "d" ] && $reboot_needed
 then 
     echo -e "\tAlready disbled\n"
-elif [[ $enabl == "d" && !$reboot_needed ]]
+elif [ $enabl == "d" ] && !$reboot_needed
 then 
     setenforce 0
     echo -e "\tDisbled\n"    
