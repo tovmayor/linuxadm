@@ -20,9 +20,7 @@ do
     elif [ $s = "Current mode:                   permissive" ]
     then
         echo -e "\tSELinux prints warnings instead of enforcing (permissive)\n"
-#    elif [ "$s" = "Current mode:                   disabled" ]
-#    then
-#        echo -e "\tNo SELinux policy is loaded\n"
+
     elif [ $s = "SELinux status:                 disabled" ]
     then 
         echo -e "\tSELinux status: disabled\n"
@@ -34,7 +32,7 @@ done
 #enable SELinux
 
 read -p "Do you want to enable(e) or disable(d) SELinux now?" enabl
-if [ "$enabl" == "e" ] && $reboot_needed
+if [[ "$enabl" == "e" && $reboot_needed ]]
 then 
     sed -i -e 's/SELINUX=disabled/SELINUX=enforcing/g' /etc/selinux/config
     echo -e "\tSELinux security policy is enforced in config file, reboot is needed."
@@ -48,13 +46,13 @@ then
 elif [[ "$enabl" == "e" && !$reboot_needed ]]
 then 
     setenforce 1
-    echo -e "\tEnabled from permissive\n"
-    echo -e !$reboot_needed"\n"
+    echo -e "\tEnabled\n"
+#    echo -e !$reboot_needed"\n"
 
 elif [ $enabl == "d" ] && $reboot_needed
 then 
     echo -e "\tAlready disbled\n"
-elif [ $enabl == "d" ] && !$reboot_needed
+elif [[ $enabl == "d" && !$reboot_needed ]]
 then 
     setenforce 0
     echo -e "\tDisbled\n"    
