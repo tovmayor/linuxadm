@@ -19,7 +19,7 @@ do
         echo -e "\tSELinux security policy is enforced\n"
     elif [ $s = "Current mode:                   permissive" ]
     then
-        echo -e "\tSELinux prints warnings instead of enforcing\n"
+        echo -e "\tSELinux prints warnings instead of enforcing (permissive)\n"
 #    elif [ "$s" = "Current mode:                   disabled" ]
 #    then
 #        echo -e "\tNo SELinux policy is loaded\n"
@@ -71,7 +71,7 @@ for c in `cat /etc/selinux/config`
 do
     if [ $c = "SELINUX=enforcing" ]
     then
-        echo -e "\tSELinux security policy is enforced\n"
+        echo -e "\tSELinux security policy is enforced (permissive)\n"
     elif [ $c = "SELINUX=permissive" ]
     then
         echo -e "\tSELinux prints warnings instead of enforcing (permissive)\n"
