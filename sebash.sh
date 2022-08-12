@@ -49,7 +49,7 @@ elif [ "$enabl" == "e" ] && !$reboot_needed
 then 
     setenforce 1
     echo -e "\tEnabled from permissive\n"
-    echo $reboot_needed
+    echo -e !$reboot_needed"\n"
 
 elif [ $enabl == "d" ] && $reboot_needed
 then 
