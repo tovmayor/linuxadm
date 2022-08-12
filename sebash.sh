@@ -9,7 +9,7 @@ then
 fi    
 
 #selinux status check
-reboot=false
+reboot_needed=false
 IFS=$'\n'
 echo "SELinux working status: "
 for s in `sestatus`
@@ -26,7 +26,7 @@ do
     elif [ $s = "SELinux status:                 disabled" ]
     then 
         echo -e "\tSELinux status: disabled\n"
-        reboot=true
+        reboot_needed=true
     fi
 
 done
@@ -34,7 +34,7 @@ done
 #enable SELinux
 
 read -p "Do you want to enable(e) or disable(d) SELinux now?" enabl
-if [ "$enabl" == "e" ] && $reboot
+if [ "$enabl" == "e" ] && $reboot_needed
 then 
     sed -i -e 's/SELINUX=disabled/SELINUX=enforcing/g' /etc/selinux/config
     echo -e "\tSELinux security policy is enforced in config file, reboot is needed."
@@ -44,11 +44,11 @@ then
         echo -e "reboot now\n"
         exit 1
     fi
-elif [ "$enabl" == "e" ] && !$reboot
+elif [ "$enabl" == "e" ] && !$reboot_needed
 then 
     setenforce 1
     echo -e "\tEnabled from permissive\n"
-    echo $reboot
+    echo $reboot_needed
 
 elif [ $enabl == "d" ]
 then 
