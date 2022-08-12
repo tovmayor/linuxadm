@@ -44,7 +44,7 @@ then
         reboot now
 
     fi
-elif [ "$enabl" == "e" ] && !$reboot_needed 
+elif [[ "$enabl" == "e" && !$reboot_needed ]]
 then 
     setenforce 1
     echo -e "\tEnabled\n"
@@ -52,7 +52,7 @@ then
 elif [ $enabl == "d" ] && $reboot_needed
 then 
     echo -e "\tAlready disbled\n"
-elif [ $enabl == "d" ] && !$reboot_needed
+elif [[ $enabl == "d"  && !$reboot_needed ]]
 then 
     setenforce 0
     echo -e "\tDisbled\n"    
