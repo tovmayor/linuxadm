@@ -31,7 +31,7 @@ do
 done
 
 #enable SELinux
-echo -e $reboot_needed"\n"
+#echo -e $reboot_needed"\n"
 
 read -p "Do you want to enable(e) or disable(d) SELinux now? " enabl
 if [ "$enabl" == "e" ] && $reboot_needed
@@ -42,7 +42,8 @@ then
     if [ $rn == "y" ]
     then 
         reboot now
-
+    else
+        echo -e "\n"
     fi
 elif [[ "$enabl" == "e" && !$reboot_needed ]]
 then 
