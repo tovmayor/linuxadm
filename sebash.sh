@@ -45,7 +45,7 @@ then
 #        echo -e "reboot now\n"
 #        exit 1
     fi
-elif [ "$enabl" == "e" ] && !$reboot_needed
+elif [ "$enabl" == "e" ] && "!$reboot_needed"
 then 
     setenforce 1
     echo -e "\tEnabled from permissive\n"
