@@ -69,7 +69,7 @@ for c in `cat /etc/selinux/config`
 do
     if [ $c = "SELINUX=enforcing" ]
     then
-        echo -e "\tSELinux security policy is enforced (permissive)\n"
+        echo -e "\tSELinux security policy is enforced\n"
     elif [ $c = "SELINUX=permissive" ]
     then
         echo -e "\tSELinux prints warnings instead of enforcing (permissive)\n"
