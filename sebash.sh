@@ -41,8 +41,9 @@ then
     read -p "Do you want to reboot now? (y/n)" rn
     if [ $rn == "y" ]
     then 
-        echo -e "reboot now\n"
-        exit 1
+        reboot now
+#        echo -e "reboot now\n"
+#        exit 1
     fi
 elif [ "$enabl" == "e" ] && !$reboot_needed
 then 
@@ -50,12 +51,15 @@ then
     echo -e "\tEnabled from permissive\n"
     echo $reboot_needed
 
-elif [ $enabl == "d" ]
+elif [ $enabl == "d" ] && $reboot_needed
+then 
+    echo -e "\tAlready disbled\n"
+elif [ $enabl == "d" ] && !$reboot_needed
 then 
     setenforce 0
-    echo -e "\tDisbled\n"
+    echo -e "\tDisbled\n"    
 else 
-    echo "Key not recognized, exiting \n"
+    echo -e "Key not recognized, exiting \n"
     exit 1
 fi
 
