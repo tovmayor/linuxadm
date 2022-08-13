@@ -69,6 +69,7 @@ then
         reboot now
     else
         echo -e "\n"
+        exit 1
     fi
 elif [[ "$enabl" == "e" && !$reboot_needed ]]
 then 
