@@ -17,23 +17,48 @@ do
     if [ $s = "Current mode:                   enforcing" ]
     then
         echo -e "\tSELinux security policy is enforced\n"
+        status=enforced
     
     elif [ $s = "Current mode:                   permissive" ]
     then
         echo -e "\tSELinux prints warnings instead of enforcing (permissive)\n"
+        status=permissive
 
     elif [ $s = "SELinux status:                 disabled" ]
     then 
         echo -e "\tSELinux status: disabled\n"
+        status=disabled
         reboot_needed=true
     fi
 
 done
 
-#enable SELinux
+#parsing /etc/selinux/confug
+echo -e "SELinux config file activation status: "
+
+for c in `cat /etc/selinux/config`
+do
+    if [ $c = "SELINUX=enforcing" ]
+    then
+        echo -e "\tSELinux security policy is enforced\n"
+        conf_status=enforced
+    elif [ $c = "SELINUX=permissive" ]
+    then
+        echo -e "\tSELinux prints warnings instead of enforcing (permissive)\n"
+        conf_status=permissive
+    elif [ $c = "SELINUX=disabled" ]
+    then
+        echo -e "\tNo SELinux policy is loaded\n"
+        conf_status=disabled
+    fi
+
+done
+
+#Changing current SELinux status
 #echo -e $reboot_needed"\n"
 
 read -p "Do you want to enable(e) or disable(d) SELinux now? " enabl
+#if [[ "$enabl" == "e" && $reboot_needed ]]
 if [ "$enabl" == "e" ] && $reboot_needed
 then 
     sed -i -e 's/SELINUX=disabled/SELINUX=enforcing/g' /etc/selinux/config
@@ -62,24 +87,6 @@ else
     exit 1
 fi
 
-
-#parsing /etc/selinux/confug
-echo -e "SELinux config file activation status: "
-
-for c in `cat /etc/selinux/config`
-do
-    if [ $c = "SELINUX=enforcing" ]
-    then
-        echo -e "\tSELinux security policy is enforced\n"
-    elif [ $c = "SELINUX=permissive" ]
-    then
-        echo -e "\tSELinux prints warnings instead of enforcing (permissive)\n"
-    elif [ $c = "SELINUX=disabled" ]
-    then
-        echo -e "\tNo SELinux policy is loaded\n"
-    fi
-
-done
 
 #enable SELinux in config
 
