@@ -17,17 +17,14 @@ do
     if [ $s = "Current mode:                   enforcing" ]
     then
         echo -e "\tSELinux security policy is enforced\n"
-        status=enforced
     
     elif [ $s = "Current mode:                   permissive" ]
     then
         echo -e "\tSELinux prints warnings instead of enforcing (permissive)\n"
-        status=permissive
 
     elif [ $s = "SELinux status:                 disabled" ]
     then 
         echo -e "\tSELinux status: disabled\n"
-        status=disabled
         reboot_needed=true
     fi
 
@@ -41,15 +38,12 @@ do
     if [ $c = "SELINUX=enforcing" ]
     then
         echo -e "\tSELinux security policy is enforced\n"
-        conf_status=enforced
     elif [ $c = "SELINUX=permissive" ]
     then
         echo -e "\tSELinux prints warnings instead of enforcing (permissive)\n"
-        conf_status=permissive
     elif [ $c = "SELINUX=disabled" ]
     then
         echo -e "\tNo SELinux policy is loaded (disabled)\n"
-        conf_status=disabled
     fi
 
 done
@@ -68,7 +62,7 @@ then
     then 
         reboot now
     else
-        echo -e "Config already modifyed to enforcing SELinux, exiting script...\n"
+        echo -e "Config already modifyed to enforcing SELinux, exiting script, reboot when needed.\n"
         exit 1
     fi
 elif [[ "$enabl" == "e" && !$reboot_needed ]]
