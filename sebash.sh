@@ -48,7 +48,7 @@ do
         conf_status=permissive
     elif [ $c = "SELINUX=disabled" ]
     then
-        echo -e "\tNo SELinux policy is loaded\n"
+        echo -e "\tNo SELinux policy is loaded (disabled)\n"
         conf_status=disabled
     fi
 
@@ -58,7 +58,7 @@ done
 #echo -e $reboot_needed"\n"
 
 read -p "Do you want to enable(e) or disable(d) SELinux now? " enabl
-#if [[ "$enabl" == "e" && $reboot_needed ]]
+#if [[ "$enabl" == "e" && $reboot_needed ]] - don't works, wtf??
 if [ "$enabl" == "e" ] && $reboot_needed
 then 
     sed -i -e 's/SELINUX=disabled/SELINUX=enforcing/g' /etc/selinux/config
@@ -86,7 +86,6 @@ else
     echo -e "Key not recognized, exiting \n"
     exit 1
 fi
-
 
 #enable SELinux in config
 
