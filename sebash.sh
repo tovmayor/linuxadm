@@ -30,7 +30,7 @@ do
 
 done
 
-#parsing /etc/selinux/confug
+#parsing /etc/selinux/config
 echo -e "SELinux config file activation status: "
 
 for c in `cat /etc/selinux/config`
@@ -62,7 +62,7 @@ then
     then 
         reboot now
     else
-        echo -e "Config already modifyed to enforcing SELinux, exiting script, reboot when needed.\n"
+        echo -e "Config already modifyed to enforcing SELinux, reboot when needed.\nExiting script.\n"
         exit 1
     fi
 elif [[ "$enabl" == "e" && !$reboot_needed ]]
