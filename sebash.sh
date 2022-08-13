@@ -68,8 +68,7 @@ then
     then 
         reboot now
     else
-        echo $rn
-        echo -e "Config already modifyed to enforce\n"
+        echo -e "Config already modifyed to enforcing SELinux, exiting script...\n"
         exit 1
     fi
 elif [[ "$enabl" == "e" && !$reboot_needed ]]
