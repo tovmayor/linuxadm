@@ -49,7 +49,6 @@ do
 done
 
 #Changing current SELinux status
-#echo -e $reboot_needed"\n"
 
 read -p "Do you want to enable(e) or disable(d) SELinux now? " enabl
 #if [[ "$enabl" == "e" && $reboot_needed ]] - don't works, wtf??
