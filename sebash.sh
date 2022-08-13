@@ -56,10 +56,11 @@ read -p "Do you want to enable(e) or disable(d) SELinux now? " enabl
 if [ "$enabl" == "e" ] && $reboot_needed
 then 
     sed -i -e 's/SELINUX=disabled/SELINUX=enforcing/g' /etc/selinux/config
-    echo -e "\tSELinux security policy is enforced in config file, reboot is needed."
+    echo -e "\tSELinux security policy is enforced in config file, reboot to apply."
     read -p "Do you want to reboot now? (y/n) " rn
     if [ $rn == "y" ]
     then 
+        echo "Rebooting..."
         reboot now
     else
         echo -e "Config already modifyed to enforcing SELinux, reboot when needed.\nExiting script.\n"
@@ -94,7 +95,7 @@ elif [ $conf == "d" ]
 then 
     sed -i -e 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config
     sed -i -e 's/SELINUX=permissive/SELINUX=disabled/g' /etc/selinux/config
-    echo -e "\tSELinux security policy is disabled in config file"
+    echo -e "\tSELinux security policy is disabled in config file. Need reboot to apply"    
 else 
     echo "Key not recognized, exiting \n"
     exit 1
