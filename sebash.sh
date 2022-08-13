@@ -68,7 +68,8 @@ then
     then 
         reboot now
     else
-        echo -e "\n"
+        echo $rn
+        echo -e "Config already modifyed to enforce\n"
         exit 1
     fi
 elif [[ "$enabl" == "e" && !$reboot_needed ]]
