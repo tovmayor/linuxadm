@@ -3,8 +3,11 @@ user='root'
 pwd='CoolPasswd@2022'
 MYSQL='mysql --skip-column-names'
 
-if [ ! -d backup ]; then 
-    mkdir backup
+if [ ! -d backup ]; 
+    then 
+        mkdir backup
+    else 
+        rm -rf ./backup/*
 fi
 
 for s in mysql `$MYSQL -u$user -p$pwd -e "SHOW DATABASES LIKE '%_db'"`;
