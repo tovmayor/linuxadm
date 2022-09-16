@@ -1,7 +1,7 @@
 #!/bin/bash
 user='root'
 pwd='CoolPasswd@2022'
-MYSQL='mysql --skip-column-names'
+MYSQL='mysql --skip-column-names --defaults-extra-file=/home/admin/my_sql.cnf'
 
 if [ ! -d backup ]; 
     then 
@@ -10,11 +10,11 @@ if [ ! -d backup ];
         rm -rf ./backup/*
 fi
 
-for s in `$MYSQL -u$user -p$pwd -e "SHOW DATABASES LIKE '%_db'"`;
+for s in `$MYSQL -e "SHOW DATABASES LIKE '%_db'"`;
     do
         mkdir ./backup/$s;
 #        echo -e "$s\n";
-        for t in `$MYSQL -u$user -p$pwd -e "SHOW TABLES FROM $s"`;
+        for t in `$MYSQL -e "SHOW TABLES FROM $s"`;
             do
                 echo -e "$s.$t\n";
 
