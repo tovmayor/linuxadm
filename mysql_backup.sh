@@ -1,4 +1,4 @@
-#!bin/bash
+#!/bin/bash
 user=repluser
 pwd=CoolPasswd@2022
 MYSQL='mysql --skip-column-names'
