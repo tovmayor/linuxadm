@@ -18,7 +18,7 @@ for s in `$MYSQL -e "SHOW DATABASES LIKE '%_db'"`;
         for t in `$MYSQL -e "SHOW TABLES FROM $s"`;
             do
                 echo -e "$s.$t\n";
-                $DUMP $s $t > ./backup/$s/$s.$t.sql
+                $DUMP $s $t | gzip -3 > ./backup/$s/$s.$t.gz;
         done
 
 done
