@@ -1,7 +1,7 @@
 #!/bin/bash
 user='root'
 pwd='CoolPasswd@2022'
-MYSQL='mysql --skip-column-names --defaults-extra-file=/home/admin/my_sql.cnf'
+MYSQL='mysql --defaults-extra-file=/home/admin/my_sql.cnf --skip-column-names'
 
 if [ ! -d backup ]; 
     then 
