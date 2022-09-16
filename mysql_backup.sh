@@ -1,5 +1,5 @@
 #!/bin/bash
-user='repluser'
+user='root'
 pwd='CoolPasswd@2022'
 MYSQL='mysql --skip-column-names'
 
