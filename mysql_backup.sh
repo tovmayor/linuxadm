@@ -1,6 +1,9 @@
 #!/bin/bash
-user='root'
-pwd='CoolPasswd@2022'
+# adding client config file  with mesql username & password /home/admin/my_sql.cnf like:
+#[client]
+#user = "some"
+#password = "very complex"
+
 MYSQL='mysql --defaults-extra-file=/home/admin/my_sql.cnf --skip-column-names'
 DUMP='mysqldump --defaults-extra-file=/home/admin/my_sql.cnf --source-data=2'
 
@@ -14,7 +17,7 @@ fi
 for s in `$MYSQL -e "SHOW DATABASES LIKE '%_db'"`;
     do
         mkdir ./backup/$s;
-#        echo -e "$s\n";
+
         for t in `$MYSQL -e "SHOW TABLES FROM $s"`;
             do
                 echo -e "$s.$t\n";
