@@ -4,8 +4,8 @@
 #user = "some"
 #password = "very complex"
 
-MYSQL='mysql --defaults-extra-file=/home/admin/my_sql.cnf --skip-column-names'
-DUMP='mysqldump --defaults-extra-file=/home/admin/my_sql.cnf --source-data=2'
+MYSQL='mysql --defaults-extra-file=/root/my_sql.cnf --skip-column-names'
+DUMP='mysqldump --defaults-extra-file=/root/my_sql.cnf --source-data=2'
 
 if [ ! -d backup ]; 
     then 
